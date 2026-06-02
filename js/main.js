@@ -159,6 +159,25 @@ function renderProjects() {
 
 
 /* ================================================================
+   SKILLS RENDERER
+   Collects every tag from the projects array, removes duplicates,
+   and injects them into the Skills & Technologies section.
+   Adding a tag to any project card will automatically appear here.
+   ================================================================ */
+function renderSkills() {
+  const container = document.getElementById("skillTags");
+  if (!container) return;
+
+  // Flatten all tags from every project and remove duplicates
+  const unique = [...new Set(projects.flatMap(function(p) { return p.tags; }))];
+
+  container.innerHTML = unique
+    .map(function(tag) { return `<span class="tag">${tag}</span>`; })
+    .join("");
+}
+
+
+/* ================================================================
    MOBILE NAVIGATION TOGGLE
    Opens and closes the nav menu on small screens.
    ================================================================ */
@@ -284,6 +303,7 @@ function initScrollToTop() {
 document.addEventListener("DOMContentLoaded", async function() {
   await loadConfig();  // fetch config.json before rendering so demo URLs are ready
   renderProjects();    // build project cards from the array above
+  renderSkills();      // populate Skills & Technologies from project tags
   initMobileNav();     // wire up the hamburger menu
   initScrollSpy();     // highlight the active nav link on scroll
   initFadeIn();        // fade sections in as they scroll into view
