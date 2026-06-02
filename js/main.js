@@ -12,6 +12,10 @@
      tags        — array of tech/language strings (required)
      github      — URL to your GitHub repo (use "" to hide link)
      demo        — URL to a live demo (use "" to hide link)
+     demoKey     — instead of a hardcoded demo URL, name a key from
+                   assets/config.json (e.g. "droneDemo"). The startup
+                   script writes the live tunnel URL there automatically.
+                   Use either demo or demoKey, not both.
      image       — path to a screenshot in assets/images/ (use "" for no image)
    ================================================================ */
 
@@ -20,7 +24,7 @@ const projects = [
   /* ---- PROJECT 1 ---- */
   {
     title:       "University Capstone; CVLAD Visualizer",
-    description: "",
+    description: "A GUI for the NRC's autonomous helicopter project",
     tags:        ["Python", "OpenGl", "PyQt6"],
     github:      "https://github.com/Raneem02/SYSC4907-Project",
     demo:        "",                         // leave empty string "" if no live demo
@@ -29,21 +33,22 @@ const projects = [
 
   /* ---- PROJECT 2 ---- */
   {
-    title:       "Project Two",
-    description: "Another project description. Keep it concise — one or two sentences works best on the card.",
-    tags:        ["JavaScript", "HTML", "CSS"],
-    github:      "https://github.com/yourusername/project-two",
-    demo:        "https://yourdemo.com",
+    title:       "This Website",
+    description: "I built this website with the help of claude code do display my portfolio and contact info",
+    tags:        ["JavaScript", "HTML", "CSS", "Claude"],
+    github:      "",
+    demo:        "",
     image:       "",
   },
 
   /* ---- PROJECT 3 ---- */
   {
-    title:       "Project Three",
-    description: "Describe what you built, the main technologies you used, and anything interesting about the implementation.",
-    tags:        ["React", "Node.js", "MongoDB"],
-    github:      "https://github.com/yourusername/project-three",
+    title:       "Quadcopter Flight Analyser",
+    description: "A tool for parsing flight data from five different drone manufacturers, display flight data and suggest flight improvements, Built with Claude",
+    tags:        ["Claude", "HTML", "CSS", "JavaScript", "Java"],
+    github:      "https://github.com/benradley/claude-project-1",
     demo:        "",
+    demoKey:     "droneDemo",   // URL loaded automatically from assets/config.json
     image:       "",
   },
 
@@ -59,6 +64,24 @@ const projects = [
   ------------------------------------------- */
 
 ];
+
+
+/* ================================================================
+   DYNAMIC CONFIG LOADER
+   Fetches assets/config.json at page load so demo URLs can be updated
+   by the startup script without touching this file.
+   ================================================================ */
+let siteConfig = {};
+
+async function loadConfig() {
+  try {
+    const response = await fetch("assets/config.json");
+    siteConfig = await response.json();
+  } catch (e) {
+    // config.json missing or unreachable — demo links simply won't appear
+    siteConfig = {};
+  }
+}
 
 
 /* ================================================================
@@ -82,6 +105,9 @@ function renderProjects() {
       .map(function(tag) { return `<span class="tag">${tag}</span>`; })
       .join("");
 
+    // Resolve demo URL — use demoKey to look up from config.json, or fall back to demo field
+    const demoUrl = project.demoKey ? (siteConfig[project.demoKey] || "") : (project.demo || "");
+
     // Build GitHub and demo links (only shown when a URL is provided)
     let linksHTML = "";
     if (project.github) {
@@ -103,9 +129,9 @@ function renderProjects() {
           GitHub
         </a>`;
     }
-    if (project.demo) {
+    if (demoUrl) {
       linksHTML += `
-        <a href="${project.demo}" target="_blank" rel="noopener">
+        <a href="${demoUrl}" target="_blank" rel="noopener">
           <!-- External link icon -->
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
@@ -255,7 +281,8 @@ function initScrollToTop() {
 /* ================================================================
    INIT — runs everything when the page has loaded
    ================================================================ */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+  await loadConfig();  // fetch config.json before rendering so demo URLs are ready
   renderProjects();    // build project cards from the array above
   initMobileNav();     // wire up the hamburger menu
   initScrollSpy();     // highlight the active nav link on scroll

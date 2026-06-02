@@ -21,7 +21,7 @@
   --color-accent-dark:  #3730a3;      /* accent hover */
   --color-accent-2:     #7c3aed;      /* secondary accent — violet (used in gradients) */
 
-  /* Gradient used across hero and accents */
+  /* Gradient used across host and accents */
   --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
 
   /* -- Typography -- */
@@ -276,7 +276,7 @@ ul { list-style: none; }
 /* ================================================================
    HERO SECTION
    ================================================================ */
-#hero {
+#host {
   /* Radial gradient gives a soft glow behind the text */
   background:
     radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
@@ -289,8 +289,8 @@ ul { list-style: none; }
 }
 
 /* Decorative floating orbs in the background */
-#hero::before,
-#hero::after {
+#host::before,
+#host::after {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -298,14 +298,14 @@ ul { list-style: none; }
   pointer-events: none;
   animation: float 8s ease-in-out infinite alternate;
 }
-#hero::before {
+#host::before {
   width: 500px;
   height: 500px;
   top: -200px;
   right: -100px;
   background: rgba(124, 58, 237, 0.1);
 }
-#hero::after {
+#host::after {
   width: 400px;
   height: 400px;
   bottom: -150px;
@@ -319,7 +319,7 @@ ul { list-style: none; }
   to   { transform: translateY(30px) scale(1.05); }
 }
 
-.hero-content {
+.host-content {
   max-width: 700px;
   margin: 0 auto;
   position: relative; /* above the orbs */
@@ -327,7 +327,7 @@ ul { list-style: none; }
 }
 
 /* Pill badge above the name */
-.hero-greeting {
+.host-greeting {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -343,7 +343,7 @@ ul { list-style: none; }
   margin-bottom: 1.25rem;
 }
 /* Blinking dot inside the greeting pill */
-.hero-greeting::before {
+.host-greeting::before {
   content: '';
   width: 7px;
   height: 7px;
@@ -358,7 +358,7 @@ ul { list-style: none; }
 }
 
 /* Gradient text on the main name */
-.hero-name {
+.host-name {
   font-size: clamp(2.8rem, 7vw, 4.5rem);
   font-weight: 800;
   line-height: 1.05;
@@ -370,22 +370,22 @@ ul { list-style: none; }
   background-clip: text;
 }
 
-.hero-tagline {
+.host-tagline {
   font-size: 1.2rem;
   color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   line-height: 1.6;
 }
 
-.hero-buttons {
+.host-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-/* Scroll cue arrow below hero */
-.hero-scroll-cue {
+/* Scroll cue arrow below host */
+.host-scroll-cue {
   position: absolute;
   bottom: 2rem;
   left: 50%;
@@ -400,7 +400,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   animation: bounce 2s ease-in-out infinite;
 }
-.hero-scroll-cue svg {
+.host-scroll-cue svg {
   width: 18px;
   height: 18px;
 }
@@ -822,9 +822,9 @@ ul { list-style: none; }
   /* Single-column project grid */
   .projects-grid { grid-template-columns: 1fr; }
 
-  /* Shrink hero orbs on mobile */
-  #hero::before { width: 300px; height: 300px; }
-  #hero::after  { width: 250px; height: 250px; }
+  /* Shrink host orbs on mobile */
+  #host::before { width: 300px; height: 300px; }
+  #host::after  { width: 250px; height: 250px; }
 
   /* Footer social links full-width on mobile */
   .social-links li { max-width: 100%; }
