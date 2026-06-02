@@ -12,5 +12,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync . s3://brsoftware.ca --delete --exclude ".git/*" --exclude ".github/*"
+      - run: aws s3 sync . s3://bens-portfolio-bucket26 --delete --exclude ".git/*" --exclude ".github/*"
       - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTROBUTION_ID }} --paths "/*"
