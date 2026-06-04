@@ -47,7 +47,7 @@ const projects = [
     description: "A tool for parsing flight data from five different drone manufacturers, display flight data and suggest flight improvements, Built with Claude",
     tags:        ["Claude", "HTML", "CSS", "JavaScript", "Java"],
     github:      "https://github.com/benradley/claude-project-1",
-    demo:        "",
+    demo:        "https://drone.brsoftware.ca",
     demoKey:     "droneDemo",   // URL loaded automatically from assets/config.json
     image:       "",
   },
