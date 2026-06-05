@@ -27,7 +27,7 @@ const projects = [
     description: "A GUI for the NRC's autonomous helicopter project",
     tags:        ["Python", "OpenGl", "PyQt6"],
     github:      "https://github.com/Raneem02/SYSC4907-Project",
-    demo:        "",                         // leave empty string "" if no live demo
+    demo:        "https://youtu.be/Zj2UhPZFbIE",                         // leave empty string "" if no live demo
     image:       "",                         // e.g. "assets/images/project1.png"
   },
 
@@ -35,7 +35,7 @@ const projects = [
   {
     title:       "This Website",
     description: "I built this website with the help of claude code do display my portfolio and contact info",
-    tags:        ["JavaScript", "HTML", "CSS", "Claude"],
+    tags:        ["JavaScript", "HTML", "CSS", "AI Development"],
     github:      "",
     demo:        "",
     image:       "",
@@ -45,7 +45,7 @@ const projects = [
   {
     title:       "Quadcopter Flight Analyser",
     description: "A tool for parsing flight data from five different drone manufacturers, display flight data and suggest flight improvements, Built with Claude",
-    tags:        ["Claude", "HTML", "CSS", "JavaScript", "Java"],
+    tags:        ["AI Development", "HTML", "CSS", "JavaScript", "Java"],
     github:      "https://github.com/benradley/claude-project-1",
     demo:        "https://drone.brsoftware.ca",
     demoKey:     "droneDemo",   // URL loaded automatically from assets/config.json
