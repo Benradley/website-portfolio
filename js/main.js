@@ -69,6 +69,21 @@ const projects = [
 
 
 /* ================================================================
+   VISIT BEACON
+   Sends a silent POST to the server-side logger when the page loads.
+   Fails quietly — if the endpoint is unavailable it has no effect.
+   ================================================================ */
+function logVisit() {
+  fetch("/api/log-visit", {
+    method:    "POST",
+    keepalive: true,   // sends even if the user navigates away immediately
+  }).catch(function() {
+    // Silently ignore — analytics should never break the page
+  });
+}
+
+
+/* ================================================================
    DYNAMIC CONFIG LOADER
    Fetches assets/config.json at page load so demo URLs can be updated
    by the startup script without touching this file.
@@ -317,6 +332,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   await loadConfig();  // fetch config.json before rendering so demo URLs are ready
   renderProjects();    // build project cards from the array above
   renderSkills();      // populate Skills & Technologies from project tags
+  logVisit();          // silent background beacon — logs this visit server-side
   initMobileNav();     // wire up the hamburger menu
   initScrollSpy();     // highlight the active nav link on scroll
   initFadeIn();        // fade sections in as they scroll into view
