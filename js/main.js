@@ -36,7 +36,7 @@ const projects = [
   {
     title:       "This Website",
     description: "I built this website with the help of claude code do display my portfolio and contact info",
-    tags:        ["JavaScript", "HTML", "CSS", "AI Development"],
+    tags:        ["JavaScript", "HTML", "CSS", "AI Development", "AWS"],
     github:      "",
     demo:        "",
     image:       "",
@@ -46,7 +46,7 @@ const projects = [
   {
     title:       "Quadcopter Flight Analyser",
     description: "A tool for parsing flight data from five different drone manufacturers, display flight data and suggest flight improvements, Built with Claude",
-    tags:        ["AI Development", "HTML", "CSS", "JavaScript", "Java"],
+    tags:        ["AI Development", "HTML", "CSS", "JavaScript", "Java", "AWS"],
     github:      "https://github.com/benradley/claude-project-1",
     demo:        "https://drone.brsoftware.ca",
     demoKey:     "droneDemo",   // URL loaded automatically from assets/config.json
